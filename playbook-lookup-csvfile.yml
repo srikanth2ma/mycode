@@ -9,7 +9,7 @@
   #   community.general.read_csv
 
   vars:
-          ip_poweredge_svr02: "{{ lookup('csvfile', 'pe02 file=~/mycode/files/ip_data.csv delimiter=, col=1') }}"
+          ip_poweredge_svr02: "{{ lookup('file', '~/mycode/files/ip_data.csv') | from_csv|map (attribute='NAME, IP') }}"
 
   tasks:
           - name: Display the IP of the var ip_poweredge_svr02 as taken from our CSV file
